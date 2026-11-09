@@ -1,0 +1,6 @@
+{
+  "name": "bloom-and-balance",
+  "version": "2.0.0",
+  "private": true,
+  "dependencies": {"web-push": "^3.6.7"}
+}

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f9eaf3" />
+  <meta name="description" content="Bloom & Balance: a beautiful, private planner for your routines, money, and projects." />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="icon" type="image/png" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Bloom & Balance • Your life in bloom</title>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Main navigation">
+    <a class="brand" href="#home" data-go="home" aria-label="Bloom and Balance home">
+      <span class="brand-mark">✿</span><span><strong>Bloom <em>&</em> Balance</strong><small>Your life in bloom</small></span>
+    </a>
+    <div class="side-label">YOUR SPACE</div>
+    <nav class="nav-menu" aria-label="Sections">
+      <button type="button" class="nav-item active" data-go="home"><span class="nav-icon">⌂</span><span>Overview</span></button>
+      <button type="button" class="nav-item voice-nav" data-action="voice-open"><span class="nav-icon">🎙</span><span>Bloom AI voice</span></button>
+      <button type="button" class="nav-item" data-go="planner"><span class="nav-icon">▦</span><span>Daily planner</span></button>
+      <button type="button" class="nav-item" data-go="notes"><span class="nav-icon">✎</span><span>Notes & journal</span></button>
+      <button type="button" class="nav-item" data-go="priorities"><span class="nav-icon">✳</span><span>My priorities</span></button>
+      <button type="button" class="nav-item" data-go="finances"><span class="nav-icon">◈</span><span>My finances</span></button>
+      <button type="button" class="nav-item" data-go="projects"><span class="nav-icon">✧</span><span>My projects</span></button>
+      <button type="button" class="nav-item" data-go="habits"><span class="nav-icon">♡</span><span>Habits & routines</span></button>
+      <button type="button" class="nav-item" data-go="insights"><span class="nav-icon">▥</span><span>My insights</span></button>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="mini-quote"><span>✦ LITTLE REMINDER</span><p>Progress is beautiful, even when it's slow.</p><span class="leaf">❀</span></div>
+      <button type="button" class="nav-item settings-nav" data-go="settings"><span class="nav-icon">⚙</span><span>Settings & backups</span></button>
+    </div>
+  </aside>
+  <div class="app-main">
+    <header class="topbar">
+      <div class="topbar-title"><span class="mobile-flower">✿</span><span id="top-section">My overview</span><span class="crumb">/ Bloom & Balance</span></div>
+      <div class="top-actions"><span class="top-date" id="top-date"></span><button class="voice-top-trigger" type="button" data-action="voice-open" aria-label="Talk to Bloom AI">🎙 <span>Talk to Bloom</span></button><button class="icon-button" id="notification-button" type="button" data-action="notifications" title="Notification settings" aria-label="Notification settings">♧</button><button class="avatar" type="button" data-go="settings" aria-label="Open settings" id="avatar">B</button></div>
+    </header>
+
+    <main id="main-content">
+      <section class="view active" id="view-home" aria-label="Overview">
+        <div class="hero">
+          <div class="hero-copy"><div class="eyebrow">✿ YOUR LITTLE CORNER OF CALM</div><h1 id="greeting">A lovely day to bloom.</h1><p>Your voice, your plans, your priorities. Let’s organize your beautiful day together.</p><div class="hero-actions"><button type="button" class="btn primary" data-action="today-open">☀ View plan for today</button><button type="button" class="btn light" data-action="add-task">+ Plan a task</button><button type="button" class="btn voice-hero-button" data-action="voice-open">🎙 Talk to Bloom</button></div></div>
+          <div class="hero-art" aria-hidden="true"><div class="art-circle"><div class="art-flower">✿</div><span class="art-star star-one">✦</span><span class="art-star star-two">✧</span><span class="art-leaf">❀</span></div><div class="floating-label">a little more<br/>every day ♡</div></div>
+        </div>
+
+        <div class="section-title row-title"><div><span class="section-kicker">TODAY AT A GLANCE</span><h2>You're growing in all the right places <span class="pink">✿</span></h2></div><span class="date-chip" id="today-chip"></span></div>
+        <div class="stats-grid">
+          <article class="stat-card peach"><span class="stat-icon">✓</span><span class="stat-label">Tasks done today</span><div class="stat-value" id="metric-tasks">0/0</div><span class="stat-note">one thing at a time</span></article>
+          <article class="stat-card lavender"><span class="stat-icon">◈</span><span class="stat-label">This month's balance</span><div class="stat-value" id="metric-balance">—</div><span class="stat-note">income minus expenses</span></article>
+          <article class="stat-card pink-bg"><span class="stat-icon">✧</span><span class="stat-label">Active projects</span><div class="stat-value" id="metric-projects">0</div><span class="stat-note">dreams in progress</span></article>
+          <article class="stat-card mint"><span class="stat-icon">♡</span><span class="stat-label">Habits completed today</span><div class="stat-value" id="metric-habits">0/0</div><span class="stat-note">consistency is magic</span></article>
+        </div>
+        <div class="two-col">
+          <section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR FOCUS</span><h3>Today's to-dos</h3></div><button type="button" class="text-button" data-go="planner">View planner →</button></div><div id="home-tasks"></div><button type="button" class="subtle-add" data-action="add-task">+ Add a little something</button></section>
+          <section class="panel"><div class="panel-heading"><div><span class="section-kicker">A LITTLE CHECK-IN</span><h3>Habits worth growing</h3></div><button type="button" class="text-button" data-go="habits">All habits →</button></div><div id="home-habits"></div><button type="button" class="subtle-add" data-action="add-habit">+ Start a new habit</button></section>
+        </div>
+
+        <section class="panel priorities-home-panel">
+          <div class="panel-heading"><div><span class="section-kicker">WHAT MATTERS MOST</span><h3>My priority categories ✳</h3></div><button type="button" class="text-button" data-go="priorities">Organize priorities →</button></div>
+          <div id="home-priorities"></div>
+          <div class="priority-inline-actions"><button type="button" class="btn secondary" data-action="add-priority-category">+ New category</button><button type="button" class="btn light" data-action="today-open">☀ View today's plan</button></div>
+        </section>
+        <div class="two-col bottom-grid">
+          <section class="panel accent-panel"><div class="section-kicker">YOUR GENTLE GUIDE</div><h3>✦ A little help planning today?</h3><p>Ask Bloom anything in English or Nigerian Pidgin. Connect a secure AI service to enable real conversation and planner actions.</p><button type="button" class="btn primary" data-action="voice-open">🎙 Speak to Bloom AI</button></section>
+          <section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR MONEY</span><h3>Financial snapshot</h3></div><button type="button" class="text-button" data-go="finances">See finances →</button></div><div id="home-finance"></div></section>
+        </div>
+      </section>
+
+      <section class="view" id="view-planner" aria-label="Daily planner">
+        <div class="page-heading"><div><span class="section-kicker">GIVE YOUR DAY SOME SHAPE</span><h1>Daily planner <span class="pink">✿</span></h1><p>Small plans, lovely possibilities.</p></div><button class="btn primary" data-action="add-task">+ New task</button></div>
+        <section class="panel calendar-panel"><div class="panel-heading"><div><span class="section-kicker">YOUR SCHEDULE</span><h3>Choose your day</h3></div><label class="date-control">Date <input id="planner-date" type="date" /></label></div><div class="date-strip" id="date-strip"></div></section>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">DO WHAT MATTERS</span><h3 id="planner-list-title">Tasks for today</h3></div><span class="small-pill" id="planner-count">0 tasks</span></div><div id="planner-tasks"></div><button type="button" class="subtle-add" data-action="add-task">+ Add a task</button></section>
+        <section class="panel tips-panel"><span class="section-kicker">✧ SMART DAILY ASSISTANT</span><h3>A plan that fits your life</h3><p>Let your tasks, habits, and deadlines guide your day.</p><button class="btn secondary" data-action="plan-day">Generate today's plan →</button></section>
+      </section>
+
+
+      <section class="view" id="view-notes" aria-label="Notes and personal journal">
+        <div class="page-heading"><div><span class="section-kicker">YOUR THOUGHTS ARE WORTH KEEPING</span><h1>Notes & journal <span class="pink">✎</span></h1><p>Ideas, reflections, and the little things you want to remember.</p></div><button type="button" class="btn primary" data-action="add-note">+ New note</button></div>
+        <section class="panel notes-toolbar"><label>Search notes<input id="notes-search" type="search" placeholder="Search thoughts, titles or categories" autocomplete="off"></label><label>View date<input id="notes-date" type="date"></label><button type="button" class="btn secondary" data-action="clear-notes-filter">All dates</button></section>
+        <div class="notes-grid" id="notes-list"></div>
+      </section>
+      <section class="view" id="view-priorities" aria-label="Priorities">
+        <div class="page-heading"><div><span class="section-kicker">MAKE ROOM FOR WHAT MATTERS</span><h1>My priorities <span class="pink">✳</span></h1><p>Make your own priority categories, then add little steps underneath. Tap a category to expand or collapse it.</p></div><button class="btn primary" type="button" data-action="add-priority-category">+ New category</button></div>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR FOCUS AREAS</span><h3>Categories & sub-priorities</h3></div><button type="button" class="btn tiny secondary" data-action="add-priority-item">+ Sub-priority</button></div>
+          <div id="priority-categories"></div>
+        </section>
+      </section>
+
+      <section class="view" id="view-finances" aria-label="Finances">
+        <div class="page-heading"><div><span class="section-kicker">MAKE EVERY COIN COUNT</span><h1>My finances <span class="pink">✿</span></h1><p>A gentle place to track your money and feel in control.</p></div><button class="btn primary" data-action="add-transaction">+ Add transaction</button></div>
+        <div class="stats-grid finance-stats"><article class="stat-card lavender"><span class="stat-icon">↗</span><span class="stat-label">Income this month</span><div class="stat-value" id="fin-income">0</div><span class="stat-note">money coming in</span></article><article class="stat-card pink-bg"><span class="stat-icon">↘</span><span class="stat-label">Expenses this month</span><div class="stat-value" id="fin-expenses">0</div><span class="stat-note">money going out</span></article><article class="stat-card mint"><span class="stat-icon">◈</span><span class="stat-label">Monthly balance</span><div class="stat-value" id="fin-balance">0</div><span class="stat-note">income − expenses</span></article><article class="stat-card peach"><span class="stat-icon">♡</span><span class="stat-label">Savings goals</span><div class="stat-value" id="fin-savings-count">0</div><span class="stat-note">beautiful things ahead</span></article></div>
+        <div class="two-col"><section class="panel"><div class="panel-heading"><div><span class="section-kicker">SPENDING LIMITS</span><h3>My budgets</h3></div><button class="text-button" data-action="add-budget">+ Set budget</button></div><div id="budgets-list"></div></section><section class="panel"><div class="panel-heading"><div><span class="section-kicker">DREAM BIG, SAVE SMALL</span><h3>Savings goals</h3></div><button class="text-button" data-action="add-goal">+ New goal</button></div><div id="goals-list"></div></section></div>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR MONEY DIARY</span><h3>Transactions</h3></div><button class="btn tiny secondary" data-action="add-transaction">+ Add entry</button></div><div class="filter-row"><label>Show <select id="transaction-filter"><option value="all">All transactions</option><option value="income">Income only</option><option value="expense">Expenses only</option></select></label></div><div id="transactions-list"></div></section>
+      </section>
+
+      <section class="view" id="view-projects" aria-label="Projects">
+        <div class="page-heading"><div><span class="section-kicker">DREAMS WITH DEADLINES</span><h1>My projects <span class="pink">✿</span></h1><p>Big ambitions, thoughtfully organized.</p></div><button class="btn primary" data-action="add-project">+ New project</button></div>
+        <div class="project-summary" id="project-summary"></div>
+        <div class="project-grid" id="projects-list"></div>
+      </section>
+
+      <section class="view" id="view-habits" aria-label="Habits">
+        <div class="page-heading"><div><span class="section-kicker">GROW AT YOUR OWN PACE</span><h1>Habits & routines <span class="pink">✿</span></h1><p>Little actions add up to a beautiful life.</p></div><button class="btn primary" data-action="add-habit">+ New habit</button></div>
+        <section class="panel habit-intro"><div><span class="section-kicker">TODAY'S PROGRESS</span><h3 id="habit-daily-message">Every day is a fresh start</h3><p>Show up for yourself, even if it's just one tiny step.</p></div><div class="ring" id="habits-ring"><span>0%</span></div></section>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR GROWING ROUTINES</span><h3>Weekly habit tracker</h3></div><span class="small-pill">Last 7 days</span></div><div id="habit-tracker"></div></section>
+      </section>
+
+      <section class="view" id="view-insights" aria-label="Insights">
+        <div class="page-heading"><div><span class="section-kicker">LOOK HOW FAR YOU'VE COME</span><h1>Your insights <span class="pink">✿</span></h1><p>Your week and month, lovingly summarized.</p></div></div>
+<div class="stats-grid extra-progress-stats"><article class="stat-card peach"><span class="stat-label">Today completed</span><div class="progress-circle" id="progress-today-circle"><span>0%</span></div><small id="progress-today-detail"></small></article><article class="stat-card lavender"><span class="stat-label">Last 7 days</span><div class="progress-circle" id="progress-week-circle"><span>0%</span></div><small id="progress-week-detail"></small></article><article class="stat-card mint"><span class="stat-label">This month</span><div class="progress-circle" id="progress-month-circle"><span>0%</span></div><small id="progress-month-detail"></small></article><article class="stat-card pink-bg"><span class="stat-label">Productivity insights</span><div id="progress-best-day" class="stat-note" style="margin-top:18px"></div></article></div>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">SMALL WINS ADD UP</span><h3>Your task completion trend</h3></div></div><div id="task-progress-chart" class="bar-chart"></div><div id="progress-suggestion" class="hint"></div></section>
+        <div class="stats-grid"><article class="stat-card peach"><span class="stat-icon">✓</span><span class="stat-label">Tasks done this week</span><div class="stat-value" id="insight-tasks">0</div><span class="stat-note">every win matters</span></article><article class="stat-card lavender"><span class="stat-icon">♡</span><span class="stat-label">Habits this week</span><div class="stat-value" id="insight-habits">0</div><span class="stat-note">completed check-ins</span></article><article class="stat-card pink-bg"><span class="stat-icon">↘</span><span class="stat-label">Spent this month</span><div class="stat-value" id="insight-spent">0</div><span class="stat-note">keep your goals in sight</span></article><article class="stat-card mint"><span class="stat-icon">✧</span><span class="stat-label">Projects completed</span><div class="stat-value" id="insight-projects">0</div><span class="stat-note">dreams achieved</span></article></div>
+        <div class="two-col"><section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR FINANCIAL RHYTHM</span><h3>Spending in the last 7 days</h3></div></div><div class="bar-chart" id="spending-chart"></div></section><section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR HABIT JOURNEY</span><h3>Habit check-ins this week</h3></div></div><div class="bar-chart" id="habit-chart"></div></section></div>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR MONTHLY RECAP</span><h3>Your progress, in perspective</h3></div></div><div id="monthly-recap"></div></section>
+      </section>
+
+      <section class="view" id="view-settings" aria-label="Settings">
+        <div class="page-heading"><div><span class="section-kicker">MAKE IT YOURS</span><h1>Settings & backups <span class="pink">✿</span></h1><p>Your space, your way.</p></div></div>
+        <div class="two-col settings-layout"><section class="panel"><div class="panel-heading"><div><span class="section-kicker">PERSONAL TOUCH</span><h3>Your preferences</h3></div></div><form id="settings-form" class="stack-form"><label>Your name<input id="settings-name" name="name" maxlength="50" placeholder="What should we call you?" autocomplete="nickname" /></label><label>Your currency<select id="settings-currency" name="currency"><option value="NGN">Nigerian naira (₦)</option><option value="USD">US dollar ($)</option><option value="GBP">British pound (£)</option><option value="EUR">Euro (€)</option><option value="GHS">Ghanaian cedi (GH₵)</option><option value="KES">Kenyan shilling (KSh)</option><option value="ZAR">South African rand (R)</option><option value="INR">Indian rupee (₹)</option><option value="CAD">Canadian dollar (CA$)</option><option value="AUD">Australian dollar (A$)</option></select></label><button class="btn primary" type="submit">Save preferences</button></form></section>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">PEACE OF MIND</span><h3>Your data & backups</h3></div></div><p class="body-copy">Your entries are stored only in this browser. Export a backup to keep them safe, or import your backup on another device.</p><div class="button-stack"><button class="btn secondary" type="button" data-action="export">↓ Download my backup</button><button class="btn secondary" type="button" data-action="import">↑ Import a backup</button><input id="import-file" type="file" accept="application/json,.json" hidden /><button class="btn danger-ghost" type="button" data-action="clear-data">Delete all my data</button></div></section></div>
+        <section class="panel"><div class="panel-heading"><div><span class="section-kicker">YOUR GENTLE NUDGES</span><h3>Reminders & privacy</h3></div></div><p class="body-copy">Enable notifications for reminders while the app is open. Optional background Web Push requires a cloud account, VAPID keys, and a Netlify scheduled function; browser and device support varies.</p><button class="btn secondary" type="button" data-action="notifications">Enable task reminders</button><p id="notification-status" class="hint"></p><div class="notice">✦ <strong>About Bloom AI:</strong> Bloom AI now uses a genuine model-backed conversation service once configured. It accesses your authorized cloud records through secure tools. Messages and records requested by tools are processed by the configured AI provider. Voice recognition may also use your browser speech service.</div></section>
+<section class="panel bloom-cloud-panel"><div class="panel-heading"><div><span class="section-kicker">PRIVATE CLOUD & REAL INTELLIGENCE</span><h3>Bloom AI connection</h3></div></div>
+            <p class="body-copy">A free static website cannot safely include an AI API key. To enable real conversations and sync, connect a Supabase account and configure your private OpenAI key on Netlify. Your previous device data remains available.</p>
+            <div id="cloud-account-status" class="hint">Cloud connection not configured.</div>
+            <form id="cloud-account-form" class="stack-form"><label>Email<input id="cloud-email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label>Password<input id="cloud-password" type="password" required autocomplete="current-password" minlength="8" placeholder="At least 8 characters"></label>
+              <div class="button-stack"><button class="btn primary" type="submit">Sign in & sync</button><button class="btn secondary" type="button" data-action="cloud-signup">Create my account</button><button class="btn danger-ghost" type="button" data-action="cloud-signout">Sign out</button></div></form>
+            <p class="hint" id="cloud-sync-status">AI needs an API key configured server-side; never paste API keys into this form.</p>
+          </section>
+          <section class="panel"><div class="panel-heading"><div><span class="section-kicker">WHAT BLOOM REMEMBERS</span><h3>My saved preferences</h3></div></div><p class="hint">Bloom remembers preferences only when you ask it to. Remove anything you no longer want saved.</p><div id="memory-list"></div><button class="btn secondary" data-action="clear-chat-history">Clear conversation history</button></section>
+          <section class="panel"><div class="panel-heading"><div><span class="section-kicker">GENTLE NUDGES</span><h3>Notification preferences</h3></div></div><p class="hint">Optional sounds and voice alerts work while the app is open, after a user interaction. For reliable reminders when closed, sign in and configure Web Push on Netlify.</p>
+            <label class="toggle-line"><input id="settings-voice-reminders" type="checkbox"> Read reminders aloud when the app is open</label>
+            <label>Alert tone<select id="settings-alert-tone"><option value="soft">Soft chime</option><option value="bright">Bright chime</option><option value="silent">Silent</option></select></label>
+            <div class="button-stack"><button class="btn secondary" data-action="enable-push">Enable background notifications</button><button class="btn secondary" data-action="save-reminder-settings">Save reminder settings</button></div><p id="push-status" class="hint"></p>
+          </section>
+        <p class="small-footer">Bloom & Balance ✿ Made to grow with you · Private, offline-friendly starter edition</p>
+      </section>
+    </main>
+  </div>
+</div>
+
+<nav class="mobile-nav" aria-label="Mobile navigation">
+  <button class="mobile-nav-item active" data-go="home" type="button"><span>⌂</span><small>Home</small></button>
+  <button class="mobile-nav-item" data-go="planner" type="button"><span>▦</span><small>Plan</small></button>
+  <button class="mobile-nav-item" data-go="notes" type="button"><span>✎</span><small>Notes</small></button>
+  <button class="mobile-nav-item" data-go="priorities" type="button"><span>✳</span><small>Priority</small></button>
+  <button class="mobile-nav-item" data-go="finances" type="button"><span>◈</span><small>Money</small></button>
+  <button class="mobile-nav-item" data-go="projects" type="button"><span>✧</span><small>Projects</small></button>
+  <button class="mobile-nav-item" data-go="habits" type="button"><span>♡</span><small>Habits</small></button>
+  <button class="mobile-nav-item" data-go="insights" type="button"><span>▥</span><small>Insights</small></button>
+  <button class="mobile-nav-item" data-go="settings" type="button"><span>⚙</span><small>More</small></button>
+</nav>
+
+<dialog id="voice-dialog" class="modal voice-modal conversational" aria-labelledby="voice-title">
+  <div class="modal-head">
+    <div><span class="section-kicker">✿ YOUR PERSONAL PLANNING COMPANION</span><h2 id="voice-title">Chat with Bloom 🌸</h2></div>
+    <button type="button" class="close-button" data-action="voice-close" aria-label="Close Bloom">×</button>
+  </div>
+  <div class="voice-intro"><div class="voice-orb" id="voice-orb" aria-hidden="true">🎙</div><div><strong id="voice-welcome-title">Hi Bella, wetin we go plan today? 💗</strong><p>Speak English or Nigerian Pidgin, ask questions, or make changes to your plans.</p></div></div>
+  <div id="voice-chat" class="voice-chat" role="log" aria-live="polite" aria-relevant="additions" aria-label="Conversation with Bloom"></div>
+  <div id="voice-suggestions" class="voice-suggestions" aria-label="Suggested replies"></div>
+  <div class="voice-controls">
+    <button class="btn primary" id="voice-mic" type="button" data-action="voice-mic">🎤 Speak</button>
+    <button class="btn secondary" id="voice-audio-toggle" type="button" data-action="voice-toggle-audio" aria-pressed="true">🔊 Voice on</button>
+    <span class="voice-status" id="voice-status" role="status" aria-live="polite">Ready when you are.</span>
+  </div>
+  <label class="voice-label" for="voice-input">Your reply or instruction</label>
+  <div class="voice-composer"><textarea id="voice-input" class="voice-input" maxlength="500" rows="2" placeholder="e.g. Bloom, I want to add a task"></textarea><button type="button" class="btn primary" data-action="voice-preview">Send ↗</button></div>
+  <div id="voice-preview" class="voice-preview" aria-live="polite" hidden></div>
+  <div class="voice-actions"><button type="button" class="btn secondary" data-action="voice-reset">↺ New conversation</button></div>
+  <p class="voice-privacy">🔒 Bloom AI sends your messages and relevant records requested by its tools to your configured AI provider. A secure cloud account and server-side AI key are required. Browser speech recognition may use an online service.</p>
+</dialog>
+
+<dialog id="today-dialog" class="modal today-modal" aria-labelledby="today-title">
+  <div class="modal-head"><div><span class="section-kicker">☀ ONE DAY AT A TIME</span><h2 id="today-title">Your plan for today, Bella ✿</h2></div><button type="button" class="close-button" data-action="today-close" aria-label="Close today's plan">×</button></div>
+  <div id="today-plan-content"></div>
+  <div class="modal-actions"><button type="button" class="btn secondary" data-action="today-read">🔊 Read my day</button><button type="button" class="btn secondary" data-action="today-add-task">+ Add task</button><button type="button" class="btn primary" data-action="today-close">Done ♡</button></div>
+</dialog>
+
+<dialog id="entry-dialog" class="modal"><div class="modal-head"><div><span id="modal-eyebrow" class="section-kicker">GROW SOMETHING NEW</span><h2 id="modal-title">Add something</h2></div><button type="button" class="close-button" data-action="close-modal" aria-label="Close dialog">×</button></div><form method="dialog" id="entry-form" class="stack-form"><div id="modal-fields"></div><div class="modal-actions"><button type="button" class="btn secondary" data-action="close-modal">Cancel</button><button type="submit" class="btn primary" id="modal-submit">Save</button></div></form></dialog>
+<dialog id="assistant-dialog" class="modal assistant-modal"><div class="modal-head"><div><span class="section-kicker">✦ YOUR SMART DAILY GUIDE</span><h2>Today's gentle game plan</h2></div><button type="button" class="close-button" data-action="close-assistant" aria-label="Close day plan">×</button></div><div id="assistant-content"></div><div class="modal-actions"><button type="button" class="btn primary" data-action="close-assistant">Sounds lovely ♡</button></div></dialog>
+<div id="toast" role="status" aria-live="polite"></div>
+<script src="./config.js"></script>
+<script src="./app.js" defer></script>
+</body></html>
